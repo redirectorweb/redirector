@@ -5,7 +5,9 @@ var https = require('https');
 var path = require('path');
 var url = require('url');
 
-http.createServer(onRequest).listen(80);
+var puerto = process.env.PORT || 8080;
+
+http.createServer(onRequest).listen(puerto);
 
 function onRequest(client_req, client_res)
 {
