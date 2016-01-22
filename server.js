@@ -6,15 +6,12 @@ var path = require('path');
 var url = require('url');
 
 http.createServer(onRequest).listen(80);
-console.log("Server initiated");
 
 function onRequest(client_req, client_res)
 {
 	var fullUrl = decodeURIComponent(url.parse(client_req.url, true).query['url_solicitada']);
 	// var ruta = "https://stackoverflow.com/questions/2011574/how-can-i-change-gridview-templatecolumn-order-dynamically";
 	var ext = path.extname(fullUrl);
-
-	console.log('Cliente: ' + client_req.url);
 
 	var protocolo = undefined;
 
