@@ -1,34 +1,46 @@
 "use strict";
 
-var http = require('http');
-var https = require('https');
-var path = require('path');
-var url = require('url');
+const Http = require('http');
+const Https = require('https');
+const Url = require('url');
+const Browser = require('zombie');
 
 var puerto = process.env.PORT || 8080;
 
-http.createServer(onRequest).listen(puerto);
+Http.createServer(onRequest).listen(puerto);
 
 function onRequest(client_req, client_res)
 {
-	var fullUrl = url.parse(client_req.url, true).query['url_solicitada'];
-	var ext = path.extname(fullUrl);
+	var urlSolicitada = Url.parse(client_req.url, true).query['url_solicitada'];
 
-	var protocolo = undefined;
-
-	// var fullUrl = "http://i.imgur.com/wpwet06.jpg";
+	// var urlSolicitada = "http://i.imgur.com/wpwet06.jpg";
 	// http%3A%2F%2Fi.imgur.com%2Fwpwet06.jpg
-	console.log(url.parse(client_req.url, true).query['url_solicitada']);
-
-	if(fullUrl.indexOf("https") > -1)
-		protocolo = https;
-	else
-		protocolo = http;
-
-	var proxy = protocolo.get(fullUrl, function (server_response)
+	if(urlSolicitada !== void(0))
 	{
-		server_response.pipe(client_res, {end: true});
-	});
+		var protocolo = undefined;
 
-	client_req.pipe(proxy, {end: true});
+		if(urlSolicitada.indexOf("https") > -1)
+			protocolo = Https;
+		else
+			protocolo = Http;
+
+		// const browser = new Browser();
+
+		// browser.localhost('example.com', 5000);
+
+		// browser.pipeline.addHandler(function(browser, request, response) {
+			// console.log('Response body: ' + response.body);
+		// });
+
+		// browser.visit('/path', function() {
+			// console.log(browser.location.href);
+		// });
+
+		var proxy = protocolo.get(urlSolicitada, function (server_response)
+		{
+			server_response.pipe(client_res, {end: true});
+		});
+
+		client_req.pipe(proxy, {end: true});
+	}
 }
