@@ -11,11 +11,9 @@ Http.createServer(onRequest).listen(puerto);
 
 function onRequest(client_req, client_res)
 {
-	var urlSolicitada = Url.parse(client_req.url, true).query['url_solicitada'];
+	var urlSolicitada = Url.parse(client_req.url, true).query['q'];
 
-	// var urlSolicitada = "http://i.imgur.com/wpwet06.jpg";
-	// http%3A%2F%2Fi.imgur.com%2Fwpwet06.jpg
-	if(urlSolicitada !== void(0))
+	if(urlSolicitada !== undefined)
 	{
 		var protocolo = undefined;
 
