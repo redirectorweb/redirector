@@ -11,11 +11,13 @@ http.createServer(onRequest).listen(puerto);
 
 function onRequest(client_req, client_res)
 {
-	var fullUrl = decodeURIComponent(url.parse(client_req.url, true).query['url_solicitada']);
-	// var ruta = "https://stackoverflow.com/questions/2011574/how-can-i-change-gridview-templatecolumn-order-dynamically";
+	// var fullUrl = decodeURIComponent(url.parse(client_req.url, true).query['url_solicitada']);
+	// var ruta = "https%3A%2F%2Fstackoverflow.com%2Fquestions%2F2011574%2Fhow-can-i-change-gridview-templatecolumn-order-dynamically";
 	var ext = path.extname(fullUrl);
 
 	var protocolo = undefined;
+
+	var fullUrl = "https://stackoverflow.com/questions/2011574/how-can-i-change-gridview-templatecolumn-order-dynamically";
 
 	if(fullUrl.indexOf("https") > -1)
 		protocolo = https;
