@@ -5,7 +5,7 @@ var https = require('https');
 var path = require('path');
 var url = require('url');
 
-http.createServer(onRequest).listen(3000);
+http.createServer(onRequest).listen(80);
 console.log("Server initiated");
 
 function onRequest(client_req, client_res)
