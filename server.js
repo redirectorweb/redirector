@@ -17,7 +17,7 @@ function onRequest(client_req, client_res)
 
 	var protocolo = undefined;
 
-	var fullUrl = "https://stackoverflow.com/questions/2011574/how-can-i-change-gridview-templatecolumn-order-dynamically";
+	var fullUrl = "http://i.imgur.com/wpwet06.jpg";
 
 	if(fullUrl.indexOf("https") > -1)
 		protocolo = https;
